@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">id_finance_test</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="clear_all">Clear all</string>
+    <string name="save_all">Save all</string>
+</resources>
