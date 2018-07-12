@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -37,6 +37,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/tvClearAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -96,10 +97,12 @@
                     android:background="@android:color/white"
                     android:focusableInTouchMode="true"
                     android:hint="@string/password"
+                    android:inputType="text|textPassword"
+                    android:text="12312432"
                     android:singleLine="true" />
 
                 <ImageView
-                    android:id="@+id/imgSearch"
+                    android:id="@+id/imgShowPassword"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="8dp"
