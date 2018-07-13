@@ -98,7 +98,6 @@
                     android:focusableInTouchMode="true"
                     android:hint="@string/password"
                     android:inputType="text|textPassword"
-                    android:text="12312432"
                     android:singleLine="true" />
 
                 <ImageView

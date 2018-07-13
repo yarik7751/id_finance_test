@@ -12,12 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.idfinance.id_finance_test.R;
+import com.idfinance.id_finance_test.presenter.MainPresenter;
+import com.idfinance.id_finance_test.relations.MainRelations;
 import com.idfinance.id_finance_test.utils.Preferences;
 import com.idfinance.id_finance_test.view.base.BaseActivity;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainRelations.IView {
 
     @BindView(R.id.imgShowPassword) ImageView imgShowPassword;
     @BindView(R.id.imgVk) ImageView imgVk;
@@ -30,10 +32,14 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.cbSaveAll) CheckBox cbSaveAll;
 
+    private MainPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        presenter = new MainPresenter(this);
 
         tvClearAll.setOnClickListener(v -> {
             clearAll();
@@ -43,6 +49,10 @@ public class MainActivity extends BaseActivity {
 
         imgShowPassword.setOnClickListener(v -> {
             showPassword(etPassword.getInputType());
+        });
+
+        btnLogin.setOnClickListener(v -> {
+            onLoginButtonClick();
         });
     }
 
@@ -75,5 +85,20 @@ public class MainActivity extends BaseActivity {
         } else {
             clearAll();
         }
+    }
+
+    private void onLoginButtonClick() {
+        String login = etLogin.getText().toString();
+        String password = etPassword.getText().toString();
+        if(Preferences.isPermissionSavePassword()) {
+            Preferences.setLogin(login);
+            Preferences.setPassword(password);
+        }
+        presenter.onLoginClickButton(login, password);
+    }
+
+    @Override
+    public void showError() {
+        showToast(R.string.login_error);
     }
 }
