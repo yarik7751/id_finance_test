@@ -8,6 +8,7 @@ public class MainRelations {
 
     public static interface IPresenter {
         void onLoginClickButton(String login, String password);
+        void vkAuthorization();
     }
 
     public static interface IInteractor {

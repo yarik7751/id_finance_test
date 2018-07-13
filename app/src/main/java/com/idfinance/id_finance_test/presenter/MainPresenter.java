@@ -18,6 +18,11 @@ public class MainPresenter implements MainRelations.IPresenter, MainRelations.II
     }
 
     @Override
+    public void vkAuthorization() {
+        router.showHomeActivity();
+    }
+
+    @Override
     public void onLoginClickButton(String login, String password) {
         interactor.login(login, password);
     }

@@ -1,8 +1,10 @@
 package com.idfinance.id_finance_test.view.main;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,10 +18,17 @@ import com.idfinance.id_finance_test.presenter.MainPresenter;
 import com.idfinance.id_finance_test.relations.MainRelations;
 import com.idfinance.id_finance_test.utils.Preferences;
 import com.idfinance.id_finance_test.view.base.BaseActivity;
+import com.vk.sdk.VKAccessToken;
+import com.vk.sdk.VKCallback;
+import com.vk.sdk.VKScope;
+import com.vk.sdk.VKSdk;
+import com.vk.sdk.api.VKError;
 
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity implements MainRelations.IView {
+
+    private final String TAG = "MainActivity_log";
 
     @BindView(R.id.imgShowPassword) ImageView imgShowPassword;
     @BindView(R.id.imgVk) ImageView imgVk;
@@ -54,6 +63,29 @@ public class MainActivity extends BaseActivity implements MainRelations.IView {
         btnLogin.setOnClickListener(v -> {
             onLoginButtonClick();
         });
+
+        imgVk.setOnClickListener(v -> {
+            VKSdk.login(this, VKScope.EMAIL);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        VKSdk.onActivityResult(requestCode, resultCode, data, new VKCallback<VKAccessToken>() {
+            @Override
+            public void onResult(VKAccessToken res) {
+                Log.d(TAG, "accessToken: " + res.accessToken);
+                Log.d(TAG, "email: " + res.email);
+                Log.d(TAG, "userId: " + res.userId);
+                presenter.vkAuthorization();
+            }
+
+            @Override
+            public void onError(VKError error) {
+                showToast(R.string.vk_aut_error);
+            }
+        });
+        //if () { super.onActivityResult(requestCode, resultCode, data); }
     }
 
     private void showPassword(int type) {

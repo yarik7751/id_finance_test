@@ -5,6 +5,7 @@ import android.content.ContextWrapper;
 
 import com.idfinance.id_finance_test.utils.Preferences;
 import com.pixplicity.easyprefs.library.Prefs;
+import com.vk.sdk.VKSdk;
 
 public class IdFinanceApplication extends Application {
 
@@ -17,5 +18,6 @@ public class IdFinanceApplication extends Application {
                 .setPrefsName(Preferences.SP_NAME)
                 .setUseDefaultSharedPreference(true)
                 .build();
+        VKSdk.initialize(this);
     }
 }
