@@ -1,5 +1,7 @@
 package com.idfinance.id_finance_test.presenter;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.idfinance.id_finance_test.interactor.MainInteractor;
 import com.idfinance.id_finance_test.relations.MainRelations;
 import com.idfinance.id_finance_test.router.MainRouter;
@@ -16,6 +18,13 @@ public class MainPresenter implements MainRelations.IPresenter, MainRelations.II
         this.view = view;
         interactor = new MainInteractor(this);
         router = new MainRouter((MainActivity) view);
+    }
+
+    @VisibleForTesting
+    public MainPresenter(MainRelations.IInteractor interactor, MainRelations.IRouter router, MainRelations.IView view) {
+        this.interactor = interactor;
+        this.router = router;
+        this.view = view;
     }
 
     @Override

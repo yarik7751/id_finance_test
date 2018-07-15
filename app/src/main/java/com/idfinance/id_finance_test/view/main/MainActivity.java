@@ -125,14 +125,10 @@ public class MainActivity extends BaseActivity implements MainRelations.IView, F
     }
 
     @Override
-    public void showError() {
-        showToast(R.string.login_error);
-    }
+    public void showError() { showToast(R.string.login_error); }
 
     @Override
-    public void showEmptyDataError() {
-        showToast(R.string.empty_data);
-    }
+    public void showEmptyDataError() { showToast(R.string.empty_data); }
 
     //FingerPrintAuthCallback
     @Override
@@ -142,9 +138,7 @@ public class MainActivity extends BaseActivity implements MainRelations.IView, F
     public void onBelowMarshmallow() {}
 
     @Override
-    public void onNoFingerPrintRegistered() {
-        showToast(R.string.no_fingerprint_registred);
-    }
+    public void onNoFingerPrintRegistered() { showToast(R.string.no_fingerprint_registred); }
 
     @Override
     public void onAuthSuccess(FingerprintManager.CryptoObject cryptoObject) {
