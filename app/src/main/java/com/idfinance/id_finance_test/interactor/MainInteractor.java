@@ -24,7 +24,7 @@ public class MainInteractor implements MainRelations.IInteractor {
     public void login(String login, String password) {
         for(int i = 0; i < logins.length; i++) {
             if(logins[i].equals(login) & passwords[i].equals(password)) {
-                interactorOutput.loginSuccess();
+                interactorOutput.loginSuccess(login, password);
                 return;
             }
         }
