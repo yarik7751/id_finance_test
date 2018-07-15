@@ -50,23 +50,11 @@ public class MainActivity extends BaseActivity implements MainRelations.IView {
 
         presenter = new MainPresenter(this);
 
-        tvClearAll.setOnClickListener(v -> {
-            clearAll();
-        });
-
+        tvClearAll.setOnClickListener(v -> clearAll() );
         permissionSavePassword();
-
-        imgShowPassword.setOnClickListener(v -> {
-            showPassword(etPassword.getInputType());
-        });
-
-        btnLogin.setOnClickListener(v -> {
-            onLoginButtonClick();
-        });
-
-        imgVk.setOnClickListener(v -> {
-            VKSdk.login(this, VKScope.EMAIL);
-        });
+        imgShowPassword.setOnClickListener(v -> showPassword(etPassword.getInputType()) );
+        btnLogin.setOnClickListener(v -> onLoginButtonClick() );
+        imgVk.setOnClickListener(v -> VKSdk.login(this, VKScope.EMAIL) );
     }
 
     @Override
@@ -85,11 +73,10 @@ public class MainActivity extends BaseActivity implements MainRelations.IView {
                 showToast(R.string.vk_aut_error);
             }
         });
-        //if () { super.onActivityResult(requestCode, resultCode, data); }
     }
 
     private void showPassword(int type) {
-        etPassword.setSelection(etPassword.length());
+        //etPassword.setSelection(etPassword.length());
         if(type == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
             imgShowPassword.setImageResource(R.drawable.baseline_visibility_off_24);
             etPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -108,29 +95,27 @@ public class MainActivity extends BaseActivity implements MainRelations.IView {
         cbSaveAll.setChecked(Preferences.isPermissionSavePassword());
         cbSaveAll.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Preferences.setPermissionSavePassword(isChecked);
-            cbSaveAll.setChecked(Preferences.isPermissionSavePassword());
         });
 
         if(Preferences.isPermissionSavePassword()) {
             etPassword.setText(Preferences.getPassword());
             etLogin.setText(Preferences.getLogin());
-        } else {
-            clearAll();
         }
     }
 
     private void onLoginButtonClick() {
-        String login = etLogin.getText().toString();
-        String password = etPassword.getText().toString();
-        if(Preferences.isPermissionSavePassword()) {
-            Preferences.setLogin(login);
-            Preferences.setPassword(password);
-        }
-        presenter.onLoginClickButton(login, password);
+        presenter.onLoginClickButton(
+            etLogin.getText().toString(),
+            etPassword.getText().toString());
     }
 
     @Override
     public void showError() {
         showToast(R.string.login_error);
+    }
+
+    @Override
+    public void showEmptyDataError() {
+        showToast(R.string.empty_data);
     }
 }

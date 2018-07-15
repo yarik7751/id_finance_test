@@ -3,6 +3,7 @@ package com.idfinance.id_finance_test.relations;
 public class MainRelations {
 
     public static interface IView {
+        void showEmptyDataError();
         void showError();
     }
 
@@ -16,7 +17,7 @@ public class MainRelations {
     }
 
     public static interface IInteractorOutput {
-        void loginSuccess();
+        void loginSuccess(String login, String password);
         void loginError();
     }
 
