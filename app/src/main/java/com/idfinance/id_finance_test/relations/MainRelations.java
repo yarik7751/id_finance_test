@@ -2,26 +2,26 @@ package com.idfinance.id_finance_test.relations;
 
 public class MainRelations {
 
-    public static interface IView {
+    public interface IView {
         void showEmptyDataError();
         void showError();
     }
 
-    public static interface IPresenter {
+    public interface IPresenter {
         void onLoginClickButton(String login, String password);
         void vkAuthorization();
     }
 
-    public static interface IInteractor {
+    public interface IInteractor {
         void login(String login, String password);
     }
 
-    public static interface IInteractorOutput {
+    public interface IInteractorOutput {
         void loginSuccess(String login, String password);
         void loginError();
     }
 
-    public static interface IRouter {
+    public interface IRouter {
         void showHomeActivity();
     }
 }

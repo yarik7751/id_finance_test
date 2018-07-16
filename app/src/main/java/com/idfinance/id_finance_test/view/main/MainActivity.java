@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity implements MainRelations.IView, F
     @BindView(R.id.cbSaveAll) CheckBox cbSaveAll;
 
     private MainPresenter mPresenter;
+
     //https://github.com/multidots/android-fingerprint-authentication
     private FingerPrintAuthHelper mFingerPrintAuthHelper;
 
